@@ -1,7 +1,7 @@
 import Dashboard from "./dashboard";
 import Footer from "./footer";
 import Header from "./header";
-import Breadcrumbs from "./breadcrumbs";
+import Breadcrumbs from "./content";
 import Drawer from "./drawer";
 import Pagination from "./pagination";
 

@@ -1,8 +1,11 @@
 import React,{useState} from 'react'
 // import type { MenuProps } from 'antd';
 import { Layout, Menu, theme } from 'antd';
+import { Breadcrumbs } from '.';
 
 const { Content, Sider } = Layout;
+
+const conicColors = { '0%': '#87d068', '50%': '#ffe58f', '100%': '#ffccc7' };
 
 export default function Drawer() {
   const [collapsed, setCollapsed] = useState(false);
@@ -10,10 +13,10 @@ export default function Drawer() {
     token: { colorBgContainer },
   } = theme.useToken();
   return (
-    <div className="drawer" style={{ display:"flex" }}>
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+    <Layout>
+      <Sider width={200} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} theme={{ primaryColor: '#d3f261' }}>
         <div className="demo-logo-vertical" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+        <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="Fruits">
               <span>Fruits</span>
             </Menu.Item>
@@ -25,10 +28,7 @@ export default function Drawer() {
             </Menu.Item>
           </Menu>
       </Sider>
-      <Layout>
-        <Content style={{ margin: '0 16px' }}>
-        </Content>
+        <Breadcrumbs />
       </Layout>
-    </div>
   )
 }

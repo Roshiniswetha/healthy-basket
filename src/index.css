@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* .ant-layout-header{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 60px;
+  width: 100%;
+  z-index: 1;
+  background: #fff !important;
+  color: #fff;
+} */

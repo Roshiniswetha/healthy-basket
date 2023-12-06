@@ -1,22 +1,19 @@
 import React from 'react'
-import { Breadcrumb, Layout, theme } from 'antd';
+import { Breadcrumb, Layout } from 'antd';
+import { ProductList } from 'components/basketComponents'
 
 const {Content} = Layout;
 
-export default function Breadcrumbs() {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
+export default function MainPageContent() {
   return (
-    <div>
       <Layout>
-        <Content style={{ margin: '0 16px' }}>
+        <Content style={{ padding: '0 50px', marginTop: 64 }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>Fruits</Breadcrumb.Item>
             <Breadcrumb.Item>Apple</Breadcrumb.Item>
           </Breadcrumb>
         </Content>
-      </Layout>
-    </div>
+        <ProductList />
+        </Layout>
   )
 }

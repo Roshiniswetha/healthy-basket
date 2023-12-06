@@ -9,10 +9,6 @@ export default function FooterComponent() {
     token: { colorBgContainer },
   } = theme.useToken();
   return (
-    <div className="footer">    
-      <Layout>
-      <Footer style={{ textAlign: 'center' }}><TwitterOutlined  style={{ color: '#D2DE32' }}/></Footer>
-      </Layout>
-    </div>
+      <Footer className="footer"><TwitterOutlined  style={{ color: '#D2DE32' }}/></Footer>
   )
 }
