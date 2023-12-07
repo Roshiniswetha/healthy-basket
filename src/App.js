@@ -1,17 +1,21 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Provider } from 'react-redux'
-import { Layout, ConfigProvider } from 'antd';
-import { fetchProducts } from "components/store/fruits/actionCreators";
-import { store } from "components/store/store"
-import { Dashboard } from "components/layout";
-import { MainContainer } from "components/basketComponents";
-import "assets/scss/style.scss";
-import { Home } from "components/pages";
 
-store.dispatch(fetchProducts())
+import { Provider } from 'react-redux'
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Layout, ConfigProvider } from 'antd';
+import { fetchFruits } from "components/store/fruits/actionCreators";
+import { fetchVegetables } from "components/store/vegetables/actionCreators";
+import { store } from "components/store/store"
+import { RoutesWrapper } from "components/pages"
+import 'assets/scss/style.scss'
+
+store.dispatch(fetchFruits())
+store.dispatch(fetchVegetables())
+
+// const queryClient = new QueryClient();
 
 function App() {
   return (
+    // <QueryClientProvider client={queryClient}>
     <ConfigProvider
       theme={{
         token: {
@@ -35,17 +39,12 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <Layout style={{ minHeight: '100vh' }}>
-            <BrowserRouter>
-            <Home/>
-              <Routes>
-                  <Route exact path="/" element={<MainContainer />} />
-                  <Route path="/categories" element={<Dashboard/>} />
-              </Routes>
-              </BrowserRouter>
+          <RoutesWrapper />
         </Layout>
       </Provider>
     </div>
     </ConfigProvider>
+    // </QueryClientProvider>
   );
 }
 

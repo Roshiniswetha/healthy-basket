@@ -1,5 +1,6 @@
 import React from 'react'
-import { Layout, theme, Menu } from 'antd';
+import { Layout, Menu, Button } from 'antd';
+import { SearchOutlined, UserOutlined } from '@ant-design/icons';
 
 const { Header } = Layout;
 
@@ -17,6 +18,8 @@ export default function HeaderComponent() {
         <Menu.Item key="2">nav 2</Menu.Item>
         <Menu.Item key="3">nav 3</Menu.Item>
       </Menu>
+      <Button icon={<SearchOutlined />}>Type Something...</Button>
+      <Button shape="circle" icon={<UserOutlined />} />
     </Header>
   )
 }

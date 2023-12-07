@@ -1,10 +1,10 @@
-import { GET_ALL_PRODUCTS, GET_SINGLE_PRODUCT, ADD_TO_CART, UPDATE_CART, DELETE_CART } from "./actionTypes";
+import { GET_ALL_FRUITS, GET_SINGLE_FRUIT, ADD_TO_CART, UPDATE_CART, DELETE_CART } from "./actionTypes";
 
 const initialState = {
     numberOfItems: 0,
     cartItems:[],
-    products:[],
-    product:[],
+    fruits:[],
+    fruit:[],
     isLoading: false,
     isLoaded: false,
 }
@@ -12,17 +12,17 @@ const initialState = {
 
 function reducer(state=initialState,action){
     switch(action.type){
-        case GET_ALL_PRODUCTS:
+        case GET_ALL_FRUITS:
             return {
                 ...state,
-                products: action.payload,
+                fruits: action.payload,
             }
-        case GET_SINGLE_PRODUCT:
+        case GET_SINGLE_FRUIT:
             return {
                 ...state,
-                product: action.payload,
+                fruit: action.payload,
             }
-        default: return
+        default: return state
     }
 }
 

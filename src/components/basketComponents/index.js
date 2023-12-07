@@ -1,11 +1,12 @@
 import Cart from "./cart";
 import MainContainer from "./mainContainer";
-import Product from "./product";
-import ProductList from "./productList";
+import FruitsList from "./fruits/fruitsList";
+import VegeteblesList from "./vegetables/vegeteblesList";
+import { FruitsContainer } from "./fruits/container";
 
 export {
     Cart,
     MainContainer,
-    Product,
-    ProductList,
+    FruitsList,
+    VegeteblesList,
 }

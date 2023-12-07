@@ -1,6 +1,8 @@
 import React from 'react'
 import { Breadcrumb, Layout } from 'antd';
-import { ProductList } from 'components/basketComponents'
+// import { FruitsContainer } from 'components/basketComponents/fruits/container';
+import FruitsList from 'components/basketComponents/fruits/fruitsList';
+
 
 const {Content} = Layout;
 
@@ -13,7 +15,7 @@ export default function MainPageContent() {
             <Breadcrumb.Item>Apple</Breadcrumb.Item>
           </Breadcrumb>
         </Content>
-        <ProductList />
+        {/* <FruitsList /> */}
         </Layout>
   )
 }

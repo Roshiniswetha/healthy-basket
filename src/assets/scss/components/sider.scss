@@ -1,5 +1,55 @@
-.ant-layout {
-    .ant-layout-sider-children{
-        background: white !important;
+.ant-layout .ant-layout-sider-children{
+        background: white;
     }
+
+// .ant-btn {
+//     background-color: #f84a06; // Your custom button background color
+//     color: #ffffff; // Your custom button text color
+  
+//     &:hover {
+//       background-color: #48388e; // Your custom button hover background color
+//     }
+//   }
+
+.ant-carousel{
+    // height: '160px';
+    // width: '25%';
+    // color: '#fff';
+    // line-height: '60%';
+    // text-align: 'center';
+    // background: '#364d79';
+    // justify-content: 'center';
+    // // flex: 1; 
+    // align-items: 'center';
+    // display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ant-row{
+    display: flex;
+    justify-content: center;
+}
+
+.ant-col{
+    margin-top: 100px;
+}
+
+.ant-layout .ant-layout-has-sider{
+    position: absolute;
+    height: 100%;
+}
+
+.ant-image{
+    height: '100%';
+    width: '70%';
+    margin-left: '500px';
+}
+
+.ant-typography{
+    display: flex;
+    justify-content: center;
+    color: #bed754;
+    font-size: 60px;
+    align-items: center;
 }
