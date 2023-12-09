@@ -3,16 +3,13 @@ import {useNavigate} from 'react-router-dom';
 import { connect, useDispatch, useSelector } from "react-redux"
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import { Avatar, Card, Flex, Row, Col, Button } from 'antd';
-import {fetchVegetables} from "components/store/vegetables/actionCreators"
 
 const { Meta } = Card;
 
-const mapStateToProps = state => ({
-  vegetables: state?.vegetables?.vegetables
-});
-
 
 function VegetablesList(props) {
+
+  const {vegetables} = useSelector((state) => state.vegetables);
   const navigate = useNavigate();
 
   const handleClick = (item) => {
@@ -21,7 +18,7 @@ function VegetablesList(props) {
   return (
     <div>
       <Row gutter={16}>
-      {props?.vegetables && (props?.vegetables).map(data=>{
+      {vegetables && (vegetables[0]).map(vegetable=>{
         return(
           <Col className="gutter-row" span={8}>
           <Card
@@ -31,8 +28,8 @@ function VegetablesList(props) {
                 height: '200px',
                 objectFit: 'cover'}}
               alt="example"
-              src={`data:image;base64,${data.image}`}
-              onClick={()=>handleClick(data.name)}
+              src={`data:image;base64,${vegetable.image}`}
+              onClick={()=>handleClick(vegetable.name)}
             />
           }
           actions={[
@@ -42,8 +39,8 @@ function VegetablesList(props) {
           ]}
         >
           <Meta
-            title={data.name}
-            description={data.description}
+            title={vegetable.name}
+            description={vegetable.description}
           />
           </Card>
           </Col>
@@ -54,4 +51,4 @@ function VegetablesList(props) {
   )
 }
 
-export default connect(mapStateToProps, null)(VegetablesList);
+export default VegetablesList

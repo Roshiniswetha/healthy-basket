@@ -1,27 +1,27 @@
 
-import { Provider } from 'react-redux'
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { useEffect } from "react";
+import {  useDispatch } from 'react-redux'
 import { Layout, ConfigProvider } from 'antd';
-import { fetchFruits } from "components/store/fruits/actionCreators";
-import { fetchVegetables } from "components/store/vegetables/actionCreators";
-import { store } from "components/store/store"
 import { RoutesWrapper } from "components/pages"
+import { onFruitsPageLoad } from "components/store/productSlices/fruitsSlice";
+import { onVegetablesPageLoad } from "components/store/productSlices/vegetablesSlice";
 import 'assets/scss/style.scss'
 
-store.dispatch(fetchFruits())
-store.dispatch(fetchVegetables())
-
-// const queryClient = new QueryClient();
-
 function App() {
+
+  const dispatch = useDispatch();
+
+useEffect(() => {
+  dispatch(onFruitsPageLoad());
+  dispatch(onVegetablesPageLoad());
+}, [dispatch]);
   return (
-    // <QueryClientProvider client={queryClient}>
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: "#BED754",
           colorInfo: "#1bb470",
-          fontFamily: "Lato, sans-serif",
+          // fontFamily: "Lato, sans-serif",
         },
         components: {
           Layout: {
@@ -29,22 +29,19 @@ function App() {
             siderBg: "#BED754",
           },
           Menu: {
-            itemBg: "#fff", // colorBgBase -3% lightness
-            subMenuItemBg: "#BED754", // colorBgBase -3% lightness,
+            itemBg: "#fff", 
+            subMenuItemBg: "#BED754", 
             darkItemBg: "blue",
           },
         },
       }}
     >
     <div className="App">
-      <Provider store={store}>
         <Layout style={{ minHeight: '100vh' }}>
           <RoutesWrapper />
         </Layout>
-      </Provider>
     </div>
     </ConfigProvider>
-    // </QueryClientProvider>
   );
 }
 

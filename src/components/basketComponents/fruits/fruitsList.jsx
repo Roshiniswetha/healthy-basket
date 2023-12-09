@@ -1,20 +1,14 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {useNavigate} from 'react-router-dom';
-// import { useQuery } from 'react-query';
-import { connect, useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
-import { Avatar, Card, Flex, Row, Col, Button } from 'antd';
-import {fetchFruits} from "components/store/fruits/actionCreators"
+import { Card, Flex, Row, Col, Button } from 'antd';
 
 const { Meta } = Card;
 
-const mapStateToProps = state => ({
-  fruits: state?.fruits?.fruits
-});
-
-
 function FruitsList(props) {
-  // console.log(data)
+
+  const {fruits} = useSelector((state) => state.fruits);
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -23,7 +17,7 @@ function FruitsList(props) {
   return (
     <div>
       <Row gutter={16}>
-      {props && (props?.fruits).map(data=>{
+      {fruits && (fruits[0]).map(fruit=>{
         return(
           <Col className="gutter-row" span={8}>
           <Card
@@ -33,7 +27,7 @@ function FruitsList(props) {
                 height: '200px',
                 objectFit: 'cover'}}
               alt="example"
-              src={`data:image;base64,${data.image}`}
+              src={`data:image;base64,${fruit.image}`}
               onClick={handleClick}
             />
           }
@@ -44,8 +38,8 @@ function FruitsList(props) {
           ]}
         >
           <Meta
-            title={data.name}
-            description={data.description}
+            title={fruit.name}
+            description={fruit.description}
           />
           </Card>
           </Col>
@@ -56,5 +50,5 @@ function FruitsList(props) {
   )
 }
 
-// export default FruitsList;
-export default connect(mapStateToProps, null)(FruitsList);
+export default FruitsList;
+// export default connect(mapStateToProps, null)(FruitsList);

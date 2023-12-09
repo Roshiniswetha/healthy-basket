@@ -9,7 +9,7 @@ const {Content} = Layout;
 export default function MainPageContent() {
   return (
       <Layout>
-        <Content style={{ padding: '0 50px', marginTop: 64 }}>
+        <Content style={{ padding: '0 50px', marginTop: '4px',width: 'max-content' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>Fruits</Breadcrumb.Item>
             <Breadcrumb.Item>Apple</Breadcrumb.Item>

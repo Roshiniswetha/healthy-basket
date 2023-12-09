@@ -11,12 +11,9 @@ import VegetablesList from 'components/basketComponents/vegetables/vegeteblesLis
 import { fetchFruits } from 'components/store/fruits/actionCreators';
 
 function RoutesWrapper() {
-  // const { data, isLoading, isError, refetch  } = useQuery('myData', fetchFruits,{
-  //   onFirstUpdate: () => refetch(),
-  // });
   return (
     <div>
-        <BrowserRouter>
+        {/* <BrowserRouter> */}
             <Home/>
               <Routes>
                   <Route exact path="/" element={<MainContainer />} />
@@ -26,7 +23,7 @@ function RoutesWrapper() {
                     <Route path="vegetables" element={<VegetablesList/>} />
                   </Route>
               </Routes>
-        </BrowserRouter>
+        {/* </BrowserRouter> */}
     </div>
   )
 }
