@@ -1,12 +1,32 @@
 // @import '~antd/dist/antd.css';
 
-.ant-layout-header .appbar-header{
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    height: 60px;
-    width: 100%;
-    z-index: 1;
-    background: #fff !important;
-    color: #fff;
+* {
+    font-family: 'Inter var', sans-serif;
+    font-size: 20px;
 }
+.ant-layout .ant-layout-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ant-popover-content{
+    weight: 400px;
+    height: 400px;
+}
+
+.ant-image .ant-image-img{
+    width: 90px;
+    height: 100px
+}
+
+// .ant-layout-header .appbar-header{
+//     position: absolute;
+//     left: 0px;
+//     top: 0px;
+//     height: 60px;
+//     width: 100%;
+//     z-index: 1;
+//     background: #fff !important;
+//     color: #fff;
+// }

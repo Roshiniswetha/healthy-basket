@@ -5,13 +5,8 @@ import { Breadcrumbs } from '.';
 
 const { Content, Sider } = Layout;
 
-const conicColors = { '0%': '#87d068', '50%': '#ffe58f', '100%': '#ffccc7' };
-
 export default function Drawer() {
   const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
   return (
     <Layout>
       <Sider width={200} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} theme={{ primaryColor: '#d3f261' }}>

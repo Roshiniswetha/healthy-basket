@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk  } from "@reduxjs/toolkit";
-import { FRUITSURL } from "./constants";
+import { GETFRUITSURL , ADDFRUITSURL } from "./constants";
+import axios from "axios";
 
 const fruitSlice = createSlice({
     name: 'fruitSlice',
@@ -13,23 +14,37 @@ const fruitSlice = createSlice({
     },
     reducers: {
         getAllFruits: (state,action) => {
-            state.fruits.push(action.payload)
-        }
+            state.fruits.push(action.payload.data)
+        },
     }
 })
 
 
 export const onFruitsPageLoad = () => {
     return function(dispatch) {
-        fetch(FRUITSURL,{
-            method:'GET',
-            headers:{'Content-type': 'application/json; charset=UTF-8','Access-Control-Allow-Origin':'*'},
-        }).then(response=>response.json())
-        .then(data=>{
-            console.log(data)
-            dispatch(fruitsActions.getAllFruits(data));
-        })
-            .catch(err=>console.log(err))
+        axios.get(GETFRUITSURL)
+        .then(response => dispatch(fruitsActions.getAllFruits(response)))
+        .catch(errors => console.log(errors));
+    }
+}
+
+export const addFruits = (body,file) => {
+    return function(dispatch) {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('name', body.name);
+        formData.append('slogan', body.slogan);
+        formData.append('description', body.description);
+        formData.append('price', body.price);
+        formData.append('quantity', body.quantity);
+        formData.append('date', body.date);
+        formData.append('weight', body.weight);
+        formData.append('healthBenefits', body.date);
+        formData.append('lifetime', body.date);
+        // const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+        axios.post(ADDFRUITSURL, formData)
+        .then(response => console.log(response))
+        .catch(errors => console.log(errors))
         }
 }
 

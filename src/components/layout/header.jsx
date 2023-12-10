@@ -1,25 +1,55 @@
-import React from 'react'
-import { Layout, Menu, Button } from 'antd';
-import { SearchOutlined, UserOutlined } from '@ant-design/icons';
+import React, {useState} from 'react'
+import {useNavigate} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Layout, Menu, Button, Typography, Space, Avatar, Badge, Popover, Empty, Image } from 'antd';
+import { SearchOutlined, UserOutlined, ShoppingOutlined } from '@ant-design/icons';
+import { Cart } from 'components/basketComponents';
 
 const { Header } = Layout;
+const { Text } = Typography;
 
 export default function HeaderComponent() {
+  const navigate = useNavigate();
+  const cartItems = useSelector(state=>state.cart)
+  const [open, setOpen] = useState(false);
+  var count = 0
+
+  const hide = () => {
+    setOpen(false);
+  };
+
+  const handleOpenChange = () => {
+    setOpen(true);
+  };
+
+  const handleCartClick = () =>{
+    setOpen(!open)
+  }
+
+  const handleLoginClick = () =>{
+    navigate(`/login`)
+  }
+
   return (
-    <Header className="ant-layout-header appbar-header" type="primary"style={{ display: 'flex', alignItems: 'center' }}>
-      <Menu
-        className="ant-menu"
-        type="primary"
-        mode="horizontal"
-        defaultSelectedKeys={['2']}
-        style={{ lineHeight: '64px', width: '100%' }}
-      >
-        <Menu.Item key="1">nav 1</Menu.Item>
-        <Menu.Item key="2">nav 2</Menu.Item>
-        <Menu.Item key="3">nav 3</Menu.Item>
-      </Menu>
-      <Button icon={<SearchOutlined />}>Type Something...</Button>
-      <Button shape="circle" icon={<UserOutlined />} />
+    <Header type="primary">
+      <Text>Healthy Basket</Text>
+      <Space size={16} wrap>
+        <Button icon={<SearchOutlined />}>Type Something...</Button>
+        <Badge count="1">
+        <div>
+          <Popover
+          content={<Cart />}
+          title="Title"
+          trigger="click"
+          open={open}
+          // onOpenChange={handleOpenChange}
+          >
+            <Button shape="square" size="large" icon={<ShoppingOutlined />} onClick={handleCartClick}/>
+          </Popover>
+        </div>
+        </Badge>
+          <Avatar shape="round" style={{ backgroundColor: '#BED754' }} icon={<UserOutlined />} onClick={handleLoginClick}/>
+      </Space>
     </Header>
   )
 }

@@ -53,7 +53,6 @@ function MainContainer() {
   }
   return (
     <div>
-      <Text>Healthy Basket</Text>
       <Carousel autoplay >
         {carouselData.map((data) => (
           <div>
@@ -66,7 +65,7 @@ function MainContainer() {
           </div>
         ))}
       </Carousel>
-      <Row gutter={16}>
+      <Row className = "cardrow"gutter={16}>
         {categoriesList.map(items=>{
           return(
             <Col className="gutter-row" span={8}>

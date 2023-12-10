@@ -1,5 +1,0 @@
-export const GET_ALL_FRUITS = 'GET_ALL_FRUITS'
-export const GET_SINGLE_FRUIT = 'GET_SINGLE_FRUIT'
-export const ADD_TO_CART = 'ADD_TO_CART'
-export const UPDATE_CART = 'UPDATE_CART'
-export const DELETE_CART = 'DELETE_CART'

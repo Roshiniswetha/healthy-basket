@@ -1,0 +1,32 @@
+.ant-carousel{
+    justify-content: center;
+    align-items: center;
+}
+
+.ant-row.cardrow{
+    display: flex;
+    justify-content: center;
+}
+
+.ant-col{
+    margin-top: 100px;
+}
+
+.ant-layout .ant-layout-has-sider{
+    position: absolute;
+    height: 100%;
+}
+
+.ant-image{
+    height: '100%';
+    width: '70%';
+    margin-left: '500px';
+}
+
+.ant-typography{
+    display: flex;
+    justify-content: center;
+    color: #bed754;
+    font-size: 60px;
+    align-items: center;
+}

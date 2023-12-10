@@ -26,7 +26,6 @@ export const onVegetablesPageLoad = () => {
             headers:{'Content-type': 'application/json; charset=UTF-8','Access-Control-Allow-Origin':'*'},
         }).then(response=>response.json())
         .then(data=>{
-            console.log(data)
             dispatch(vegetablesActions.getAllVegetables(data));
         })
             .catch(err=>console.log(err))
