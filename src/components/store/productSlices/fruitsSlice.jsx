@@ -39,8 +39,8 @@ export const addFruits = (body,file) => {
         formData.append('quantity', body.quantity);
         formData.append('date', body.date);
         formData.append('weight', body.weight);
-        formData.append('healthBenefits', body.date);
-        formData.append('lifetime', body.date);
+        formData.append('healthBenefits', body.healthBenefits);
+        formData.append('lifetime', body.lifetime);
         // const config = { headers: { 'Content-Type': 'multipart/form-data' } };
         axios.post(ADDFRUITSURL, formData)
         .then(response => console.log(response))

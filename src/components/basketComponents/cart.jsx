@@ -25,15 +25,15 @@ const Cart = () => {
           return(
             <div>
            <Space size={12}>
-          <Image
-            width={200}
-            src={`data:image;base64,${item.imagePath}`}
-            placeholder={
-              <Image
-                preview={false}
-                src={`data:image;base64,${item.imagePath}`}
-                width={200}
-              />
+            <Image
+              width={200}
+              src={`data:image;base64,${item.imagePath}`}
+              placeholder={
+                <Image
+                  preview={false}
+                  src={`data:image;base64,${item.imagePath}`}
+                  width={200}
+                />
             }
           />
           <Button

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk  } from "@reduxjs/toolkit";
-import { DAILYESSENTIALSURL } from "./constants";
+import { GETDAILYESSENTIALSURL } from "./constants";
 
 const dailyEssentialSlice = createSlice({
     name: 'dailyEssentialSlice',
@@ -21,7 +21,7 @@ const dailyEssentialSlice = createSlice({
 
 export const onDailyEssentialsPageLoad = () => {
     return function(dispatch) {
-        fetch(DAILYESSENTIALSURL,{
+        fetch(GETDAILYESSENTIALSURL,{
             method:'GET',
             headers:{'Content-type': 'application/json; charset=UTF-8','Access-Control-Allow-Origin':'*'},
         }).then(response=>response.json())

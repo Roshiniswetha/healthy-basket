@@ -1,15 +1,25 @@
 .ant-carousel{
-    justify-content: center;
-    align-items: center;
+    width: 960px;
+    margin: auto;
+    height: 400px;
+    margin-top: 120px;
 }
 
-.ant-row.cardrow{
-    display: flex;
-    justify-content: center;
+.ant-row{
+    // display: flex;
+    // justify-content: center;
+    max-width: 1040px;
+    padding: 16px;
+    flex-wrap:wrap;
+    margin:0 auto;
+    .cardrow{
+        height: 150px;
+    }
 }
 
 .ant-col{
     margin-top: 100px;
+    margin: 16px;
 }
 
 .ant-layout .ant-layout-has-sider{
@@ -20,7 +30,7 @@
 .ant-image{
     height: '100%';
     width: '70%';
-    margin-left: '500px';
+    // margin-left: 500px;
 }
 
 .ant-typography{
@@ -29,4 +39,25 @@
     color: #bed754;
     font-size: 60px;
     align-items: center;
+}
+
+.ant-card-cover{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+
+}
+
+.ant-card{
+    width:320px;
+    margin-top: 150px;
+}
+
+.ant-flex{
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+    padding: 16px;
+    flex-wrap:wrap;
+    margin:0 auto;
 }

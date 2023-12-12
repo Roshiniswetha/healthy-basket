@@ -10,7 +10,7 @@ const { Text } = Typography;
 
 export default function HeaderComponent() {
   const navigate = useNavigate();
-  const cartItems = useSelector(state=>state.cart)
+  const {cartItems} = useSelector(state=>state.cart)
   const [open, setOpen] = useState(false);
   var count = 0
 
@@ -32,10 +32,12 @@ export default function HeaderComponent() {
 
   return (
     <Header type="primary">
-      <Text>Healthy Basket</Text>
+      <div className='headerName'>
+        <Text>Healthy Basket</Text>
+      </div>
       <Space size={16} wrap>
         <Button icon={<SearchOutlined />}>Type Something...</Button>
-        <Badge count="1">
+        <Badge count={cartItems ? cartItems.length: 0}>
         <div>
           <Popover
           content={<Cart />}

@@ -9,13 +9,14 @@ const { Meta } = Card;
 
 function FruitsList(props) {
 
-  const {fruits} = useSelector((state) => state.fruits);
+  // const {fruits} = useSelector((state) => state.fruits);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleClick = () => {
     navigate('/apple')
   }
+  console.log(props);
 
   const handleAddToCart = (fruit) => {
     const product = { ...fruit, productQuantityInCart: 1 };
@@ -35,16 +36,15 @@ function FruitsList(props) {
   // };
   return (
     <div>
-      <Row gutter={16}>
-      {fruits && (fruits).map(fruit=>fruit.map(data=>{
+       <Flex wrap="wrap" gap="small">
+      {/* <Row > */}
+      {/* {fruits && fruits?.map(fruit=>fruit.map(data=>{
         return(
-          <Col className="gutter-row" span={8}>
+          // <Col className="gutter-row" span={8}>
           <Card
           cover={
             <img
-              style={{ width: '100%',
-                height: '200px',
-                objectFit: 'cover'}}
+              style={{ display: 'flex',width: '50%',height: '200px',objectFit: 'cover'}}
               alt={data.name}
               src={`data:image;base64,${data.imagePath}`}
               onClick={handleClick}
@@ -68,10 +68,10 @@ function FruitsList(props) {
             ADD TO CART */}
             {/* {!isAdded ? "ADD TO CART" : "✔ ADDED"} */}
           {/* </button> */}
-          </Card>
-          </Col>)
-      }))}
-      </Row>
+          {/* </Card>)
+      }))} */} 
+      </Flex>
+      {/* </Row> */}
     </div>
   )
 }

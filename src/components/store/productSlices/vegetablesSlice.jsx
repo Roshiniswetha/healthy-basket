@@ -1,11 +1,10 @@
 import { createSlice, createAsyncThunk  } from "@reduxjs/toolkit";
-import { VEGETABLESURL } from "./constants";
+import { GETVEGETABLESURL , ADDVEGETABLESURL } from "./constants";
+import axios from "axios";
 
 const vegetableSlice = createSlice({
     name: 'vegetableSlice',
     initialState: {
-        numberOfItems: 0,
-        // cartItems:[],
         vegetables:[],
         Vegetable:[],
         isLoading: false,
@@ -13,22 +12,37 @@ const vegetableSlice = createSlice({
     },
     reducers: {
         getAllVegetables: (state,action) => {
-            state.vegetables.push(action.payload)
-        }
+            state.vegetables.push(action.payload.data)
+        },
     }
 })
 
 
 export const onVegetablesPageLoad = () => {
     return function(dispatch) {
-        fetch(VEGETABLESURL,{
-            method:'GET',
-            headers:{'Content-type': 'application/json; charset=UTF-8','Access-Control-Allow-Origin':'*'},
-        }).then(response=>response.json())
-        .then(data=>{
-            dispatch(vegetablesActions.getAllVegetables(data));
-        })
-            .catch(err=>console.log(err))
+        axios.get(GETVEGETABLESURL)
+        .then(response => dispatch(vegetablesActions.getAllVegetables(response)))
+        .catch(errors => console.log(errors));
+    }
+}
+
+export const addVegetables = (body,file) => {
+    return function(dispatch) {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('name', body.name);
+        formData.append('slogan', body.slogan);
+        formData.append('description', body.description);
+        formData.append('price', body.price);
+        formData.append('quantity', body.quantity);
+        formData.append('date', body.date);
+        formData.append('weight', body.weight);
+        formData.append('healthBenefits', body.healthBenefits);
+        formData.append('lifetime', body.lifetime);
+        // const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+        axios.post(GETVEGETABLESURL, formData)
+        .then(response => console.log(response))
+        .catch(errors => console.log(errors))
         }
 }
 
