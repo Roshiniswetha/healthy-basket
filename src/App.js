@@ -21,7 +21,7 @@ useEffect(() => {
         token: {
           colorPrimary: "#BED754",
           colorInfo: "#1bb470",
-          // fontFamily: "Lato, sans-serif",
+          fontFamily: "Palatino",
         },
         components: {
           Layout: {

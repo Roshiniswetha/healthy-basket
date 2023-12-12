@@ -12,7 +12,6 @@ import VegetablesList from 'components/basketComponents/vegetables/vegeteblesLis
 import ProductsForm from 'components/layout/productsForm';
 
 function RoutesWrapper() {
-  const {fruits} = useSelector((state) => state.fruits);
   return (
     <div>
         {/* <BrowserRouter> */}
@@ -21,7 +20,7 @@ function RoutesWrapper() {
                   <Route exact path='/' element={<MainContainer />} />
                   <Route path='/categories'  element={<Dashboard/>}>
                     {/* <Route index element={<Dashboard/>} /> */}
-                    <Route path='fruits' element={<FruitsList props={fruits}/>} />
+                    <Route path='fruits' element={<FruitsList/>} />
                     <Route path='vegetables' element={<VegetablesList/>} />
                   </Route>
                   <Route path='/login' element={<ProductsForm />}/>

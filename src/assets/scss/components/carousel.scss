@@ -6,8 +6,8 @@
 }
 
 .ant-row{
-    // display: flex;
-    // justify-content: center;
+    display: flex;
+    justify-content: center;
     max-width: 1040px;
     padding: 16px;
     flex-wrap:wrap;
@@ -23,8 +23,15 @@
 }
 
 .ant-layout .ant-layout-has-sider{
-    position: absolute;
+    position: fixed;
     height: 100%;
+}
+.ant-layout .ant-layout-sider-has-trigger{
+    margin-top: 65px;
+}
+.ant-layout .ant-layout-sider-trigger{
+    background-color:#a0be17;
+    position: fixed;
 }
 
 .ant-image{
@@ -36,9 +43,10 @@
 .ant-typography{
     display: flex;
     justify-content: center;
-    color: #bed754;
-    font-size: 60px;
+    color: #546217;
+    font-size: 40px;
     align-items: center;
+    margin-top: 15px;
 }
 
 .ant-card-cover{

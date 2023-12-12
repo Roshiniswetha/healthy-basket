@@ -14,7 +14,7 @@ const fruitSlice = createSlice({
     },
     reducers: {
         getAllFruits: (state,action) => {
-            state.fruits.push(action.payload.data)
+            state.fruits.push(action.payload)
         },
     }
 })
@@ -23,7 +23,12 @@ const fruitSlice = createSlice({
 export const onFruitsPageLoad = () => {
     return function(dispatch) {
         axios.get(GETFRUITSURL)
-        .then(response => dispatch(fruitsActions.getAllFruits(response)))
+        // .then((response) => {
+        //     const convertString = JSON.stringify(response.data);
+        //     dispatch(fruitsActions.getAllFruits(response.data))
+        //     console.log(convertString));
+        // })
+        .then(response => dispatch(fruitsActions.getAllFruits(response.data)))
         .catch(errors => console.log(errors));
     }
 }

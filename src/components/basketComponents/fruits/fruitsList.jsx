@@ -12,11 +12,12 @@ function FruitsList(props) {
   // const {fruits} = useSelector((state) => state.fruits);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const {fruits} = useSelector((state) => state.fruits);
 
   const handleClick = () => {
     navigate('/apple')
   }
-  console.log(props);
+  // console.log(fruits);
 
   const handleAddToCart = (fruit) => {
     const product = { ...fruit, productQuantityInCart: 1 };
@@ -38,40 +39,36 @@ function FruitsList(props) {
     <div>
        <Flex wrap="wrap" gap="small">
       {/* <Row > */}
-      {/* {fruits && fruits?.map(fruit=>fruit.map(data=>{
+       {fruits && fruits?.map(data=>Object.entries(data).map((value)=>{
+              // {Object.entries(data).map((value)=>{
+              //     console.log(value[1])
+              // })}
         return(
           // <Col className="gutter-row" span={8}>
           <Card
           cover={
             <img
-              style={{ display: 'flex',width: '50%',height: '200px',objectFit: 'cover'}}
-              alt={data.name}
-              src={`data:image;base64,${data.imagePath}`}
+              style={{ display: 'flex',width: '50%',height: '200px',objectFit: 'cover',marginTop:'10px'}}
+              alt={value[1][0].name}
+              src={`data:image;base64,${value[1][0].imagePath}`}
               onClick={handleClick}
             />
           }
           actions={[
             <MinusOutlined key="minus"/>,
-            <Button onClick={()=>handleAddToCart(data)}>ADD TO CART</Button>,
+            <Button onClick={()=>handleAddToCart(value[1][0])}>ADD TO CART</Button>,
             <PlusOutlined key="plus"  onClick={handleAddToCart}/>,
           ]}
         >
           <Meta
-            title={data.name}
-            description={data.description}
+            title={value[1][0].name}
+            description={value[1][0].description}
           />
-          {/* <button
-          // className={!isAdded ? "" : "added"}
-            type="button"
-            onClick={()=>handleAddToCart(data)}
-          >
-            ADD TO CART */}
-            {/* {!isAdded ? "ADD TO CART" : "✔ ADDED"} */}
-          {/* </button> */}
-          {/* </Card>)
-      }))} */} 
+          </Card>)
+      }))} 
+
       </Flex>
-      {/* </Row> */}
+       {/* </Row> */}
     </div>
   )
 }

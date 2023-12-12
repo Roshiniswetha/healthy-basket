@@ -26,8 +26,8 @@ export default function Drawer() {
           {fruits && Object.entries(fruits[0]).map((key,value)=>{
             return(
               <Menu.Item key="Fruits" onClick={handleClick}>
-                <span>{key}</span>
-                {showComponent && <FruitsList props={value}/>}
+                <span>{key[0]}</span>
+                {/* {showComponent && <FruitsList fruits={value}/>} */}
               </Menu.Item>
             )
           })

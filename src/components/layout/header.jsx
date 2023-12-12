@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Layout, Menu, Button, Typography, Space, Avatar, Badge, Popover, Empty, Image } from 'antd';
 import { SearchOutlined, UserOutlined, ShoppingOutlined } from '@ant-design/icons';
 import { Cart } from 'components/basketComponents';
+import H from 'assets/images/r.png'
 
 const { Header } = Layout;
 const { Text } = Typography;
@@ -33,6 +34,7 @@ export default function HeaderComponent() {
   return (
     <Header type="primary">
       <div className='headerName'>
+        <img  className='headerImage' src={H}/>
         <Text>Healthy Basket</Text>
       </div>
       <Space size={16} wrap>
