@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import { Card, Flex, Row, Col, Button } from 'antd';
 import { cartActions } from 'components/store/productSlices/cartSlice';
+import { fruitsData } from 'assets/data/Fruits';
+import { fruitsImage } from 'assets/images/fruitsImages';
 
 const { Meta } = Card;
 
@@ -12,7 +14,7 @@ function FruitsList(props) {
   // const {fruits} = useSelector((state) => state.fruits);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {fruits} = useSelector((state) => state.fruits);
+  // const {fruits} = useSelector((state) => state.fruits);
 
   const handleClick = () => {
     navigate('/apple')
@@ -22,50 +24,33 @@ function FruitsList(props) {
   const handleAddToCart = (fruit) => {
     const product = { ...fruit, productQuantityInCart: 1 };
     dispatch(cartActions.addItemToCart(product));
-    // setIsAdded(true);
-    // setTimeout(() => {
-    //   setIsAdded(false);
-    // }, 3500);
   };
-  // const handleRemoveFromCart = (fruit) => {
-  //   const product = { ...fruit, productQuantityInCart: 1 };
-  //   dispatch(cartActions.deleteItemFromCart(product));
-  //   // setIsAdded(true);
-  //   // setTimeout(() => {
-  //   //   setIsAdded(false);
-  //   // }, 3500);
-  // };
   return (
     <div>
        <Flex wrap="wrap" gap="small">
-      {/* <Row > */}
-       {fruits && fruits?.map(data=>Object.entries(data).map((value)=>{
-              // {Object.entries(data).map((value)=>{
-              //     console.log(value[1])
-              // })}
+       {fruitsData.map(value=>{
         return(
-          // <Col className="gutter-row" span={8}>
           <Card
           cover={
             <img
               style={{ display: 'flex',width: '50%',height: '200px',objectFit: 'cover',marginTop:'10px'}}
-              alt={value[1][0].name}
-              src={`data:image;base64,${value[1][0].imagePath}`}
+              alt={value.name}
+              src={fruitsImage.find(item=>Object.keys(item)[0]===(value.name).split(' ')[0])}
               onClick={handleClick}
             />
           }
           actions={[
             <MinusOutlined key="minus"/>,
-            <Button onClick={()=>handleAddToCart(value[1][0])}>ADD TO CART</Button>,
+            <Button onClick={()=>handleAddToCart(value)}>ADD TO CART</Button>,
             <PlusOutlined key="plus"  onClick={handleAddToCart}/>,
           ]}
         >
           <Meta
-            title={value[1][0].name}
-            description={value[1][0].description}
+            title={value.name}
+            description={value.price}
           />
           </Card>)
-      }))} 
+      })} 
 
       </Flex>
        {/* </Row> */}
