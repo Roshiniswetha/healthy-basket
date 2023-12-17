@@ -25,7 +25,7 @@ export default function Drawer() {
   const categoriesData = [
     { key: '1', title: 'Fruits', children: [...fruitCategories] },
     { key: '2', title: 'Vegetables', children: [...vegetableCategories] },
-    { key: '3', title: 'Daily Essentials', children: [...vegetableCategories] },
+    // { key: '3', title: 'Daily Essentials', children: [...vegetableCategories] },
   ];
 
   const findParentNode = (key) => {
@@ -40,12 +40,13 @@ export default function Drawer() {
     let category = 'All'
     setSelectedKeys(selectedKeys[0]);
     const selectedKey = selectedKeys[0]
-    if(selectedKey==='Fruits' || findParentNode(selectedKey)==='Fruits'){
+    console.log(isNaN(selectedKey))
+    if(info.node.title==='Fruits' || (isNaN(selectedKey) && findParentNode(selectedKey)==='Fruits')){
         navigate('/categories/fruits')
         category = info.node.title==='Fruits' ? 'All' : info.node.title
         dispatch(categorySliceActions.setFruitCategory(category))
         dispatch(fruitsActions.getFilteredFruitsByCategory(category))
-    } else if(selectedKey==='Vegetables' || findParentNode(selectedKey)==='Vegetables'){
+    } else if(info.node.title==='Vegetables' || (isNaN(selectedKey) && findParentNode(selectedKey)==='Vegetables')){
         navigate('/categories/vegetables')
         category = info.node.title==='Vegetables' ? 'All' : info.node.title
         dispatch(categorySliceActions.setVegetableCategory(category))
