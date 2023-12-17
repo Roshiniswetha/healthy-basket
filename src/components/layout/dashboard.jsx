@@ -1,6 +1,6 @@
 import React from 'react'
 import { Footer } from '.'
-import { Drawer } from '.'
+import Drawer from './drawer';
 import { Outlet } from 'react-router-dom';
 
 function Dashboard() {

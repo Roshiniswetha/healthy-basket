@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import {  useDispatch } from 'react-redux'
 import { Layout, ConfigProvider } from 'antd';
 import { RoutesWrapper } from "components/pages"
-import { onFruitsPageLoad } from "components/store/productSlices/fruitsSlice";
+// import { onFruitsPageLoad } from "components/store/productSlices/fruitsSlice";
 import { onVegetablesPageLoad } from "components/store/productSlices/vegetablesSlice";
+import { filterValuesByCategory } from "components/store/productSlices/categorySlice";
 import 'assets/scss/style.scss'
 
 function App() {
@@ -12,8 +13,9 @@ function App() {
   const dispatch = useDispatch();
 
 useEffect(() => {
-  dispatch(onFruitsPageLoad());
-  dispatch(onVegetablesPageLoad());
+  dispatch(filterValuesByCategory())
+  // dispatch(onFruitsPageLoad());
+  // dispatch(onVegetablesPageLoad());
 }, [dispatch]);
   return (
     <ConfigProvider

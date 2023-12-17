@@ -15,7 +15,7 @@ const Cart = () => {
 
   const handleProceedCheckout = () => {
     dispatch(cartActions.toggleCartPopup());
-    navigate.push("/checkout");
+    navigate("/checkout");
   };
 
   return (

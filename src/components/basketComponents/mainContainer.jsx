@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {useNavigate} from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux"
+
 import { Image } from 'antd';
 import { Carousel, Card, Row, Col, Flex, Typography } from "antd";
 import vegetables from './../../assets/videos/vegetables.mp4'
@@ -7,6 +9,8 @@ import fruits from './../../assets/videos/fruits.mp4'
 import milk from './../../assets/videos/milk.mp4'
 import healthyFood from 'assets/images/HealthyFood.png'
 import BudgetFriendly from 'assets/images/BudgetFriendly.png'
+import { vegetablesData } from "assets/data/Vegetables";
+import { categorySliceActions } from 'components/store/productSlices/categorySlice';
 
 const { Text, Link } = Typography;
 
@@ -18,10 +22,6 @@ resizeMode: 'center',
 }
 
 const carouselData = [
-  // {
-  //   name: 'vegetables',
-  //   img:  `${cart}`,
-  // },
   {
     name: 'fruits',
     img: `${healthyFood}`,
@@ -50,6 +50,11 @@ const categoriesList = [
 
 function MainContainer() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(categorySliceActions.setCategory('All'))
+  },[])
   const handleClick = (title) =>{
     navigate(`/categories/${title}`)
   }

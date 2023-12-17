@@ -9,7 +9,7 @@ import {
   InputNumber,
   Upload,
 } from 'antd';
-import { addFruits } from 'components/store/productSlices/fruitsSlice';
+// import { addFruits } from 'components/store/productSlices/fruitsSlice';
 
 function ProductsForm() {
   const [file,setFile] = React.useState();
@@ -19,7 +19,7 @@ function ProductsForm() {
   }
   const onFinish = (values) => {
     console.log('hi',values)
-    dispatch(addFruits(values,file))
+    // dispatch(addFruits(values,file))
   }
 
   const onFinishFailed = (err) => {

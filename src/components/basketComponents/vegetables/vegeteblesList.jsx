@@ -3,50 +3,50 @@ import {useNavigate} from 'react-router-dom';
 import { connect, useDispatch, useSelector } from "react-redux"
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import { Avatar, Card, Flex, Row, Col, Button } from 'antd';
+import { vegetablesData } from 'assets/data/Vegetables';
 
 const { Meta } = Card;
 
 
 function VegetablesList(props) {
 
-  const {vegetables} = useSelector((state) => state.vegetables);
+  // const {vegetables} = useSelector((state) => state.vegetables);
   const navigate = useNavigate();
 
   const handleClick = (item) => {
     navigate(`/${item}`)
   }
+  const keys = Object.keys(vegetablesData)
   return (
     <div>
-      <Row gutter={16}>
-      {vegetables && (vegetables[0]).map(vegetable=>{
+      <Flex wrap="wrap" gap="small">
+      {keys.map(key=>{
         return(
-          <Col className="gutter-row" span={8}>
+          // <Col className="gutter-row" span={8}>
           <Card
           cover={
             <img
-              style={{ width: '100%',
-                height: '200px',
-                objectFit: 'cover'}}
-              alt="example"
-              src={`data:image;base64,${vegetable.image}`}
-              onClick={()=>handleClick(vegetable.name)}
+              style={{ display: 'flex',width: '50%',height: '200px',objectFit: 'cover',marginTop:'10px'}}
+              alt={vegetablesData[key].name}
+              src={vegetablesData[key].image}
+              onClick={handleClick}
             />
           }
           actions={[
-            <MinusOutlined key="minus" />,
-            <Button type="primary">Add</Button>,
-            <PlusOutlined key="plus" />,
+            <MinusOutlined key="minus"/>,
+            // <Button onClick={()=>handleAddToCart(value)}>ADD TO CART</Button>,
+            // <PlusOutlined key="plus"  onClick={handleAddToCart}/>,
           ]}
         >
           <Meta
-            title={vegetable.name}
-            description={vegetable.description}
+            title={vegetablesData[key].name}
+            description={vegetablesData[key].price}
           />
           </Card>
-          </Col>
+          // </Col>
         )
       })}
-      </Row>
+      </Flex>
     </div>
   )
 }
