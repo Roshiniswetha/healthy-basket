@@ -53,7 +53,8 @@ function MainContainer() {
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    dispatch(categorySliceActions.setCategory('All'))
+    dispatch(categorySliceActions.setFruitCategory('All'))
+    dispatch(categorySliceActions.setVegetableCategory('All'))
   },[])
   const handleClick = (title) =>{
     navigate(`/categories/${title}`)

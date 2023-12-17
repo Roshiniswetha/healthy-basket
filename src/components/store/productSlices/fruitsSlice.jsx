@@ -30,7 +30,7 @@ const fruitSlice = createSlice({
         },
         getFilteredFruitsByCategory: (state,action) => {
             const category = action.payload;
-            const filteredValues = state.allFruits.filter(fruit =>
+            const filteredValues = (category==='All') ? state.allFruits : state.allFruits.filter(fruit =>
                 fruit.category===category)
             return {
                 ...state,

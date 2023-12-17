@@ -1,4 +1,4 @@
-import { apple, orange,lemon } from "assets/images"
+import { apple, orange,lemon, mango, grapes, greenApple, strawberry } from "assets/images"
 
 export const fruitsData = [
     {
@@ -17,31 +17,38 @@ export const fruitsData = [
     },
     {
       "id": 3,
-      "name": "Cucumber - 1 Kg",
+      "name": "Lemon - 1 Kg",
       "price": 48,
       "image": `${lemon}`,
       "category": "Regional Fruit"
     },
     {
       "id": 4,
-      "name": "Apple - 1 Kg",
+      "name": "Mango - 1 Kg",
       "price": 120,
-      "image": `${apple}`,
-      "category": "Berry"
+      "image": `${mango}`,
+      "category": "Seasonal Fruit"
     },
     {
       "id": 5,
-      "name": "Orange - 1 Kg",
+      "name": "Grapes - 1 Kg",
       "price": 60,
-      "image": `${orange}`,
+      "image": `${grapes}`,
       "category": "Seasonal Fruit"
     },
     {
       "id": 6,
-      "name": "Cucumber - 1 Kg",
+      "name": "Green Apple - 1 Kg",
       "price": 48,
-      "image": `${lemon}`,
+      "image": `${greenApple}`,
       "category": "Regional Fruit"
+    },
+    {
+      "id": 6,
+      "name": "Strawberry - 1 Kg",
+      "price": 48,
+      "image": `${strawberry}`,
+      "category": "Berry"
     },
       // {
       //   name:"Mango",  

@@ -1,41 +1,70 @@
-import React, { useContext } from "react";
+import React, { memo, } from "react";
 import { useNavigate } from "react-router-dom";
 import {  useSelector, useDispatch } from 'react-redux'
-import { Layout, Menu, Button, Typography, Space, Avatar, Badge, Popover, Empty, Image,Card } from 'antd';
+import { Button, Space, Popover, Empty, Image } from 'antd';
 import { cartActions } from "components/store/productSlices/cartSlice";
 
-const Cart = () => {
-  const { cartItems } = useSelector(state=>state.cart)
+import { ShoppingOutlined } from '@ant-design/icons';
+
+const Cart = memo((props) => {
+
+  const { cartItems } = props
+  const {totalPrice} = useSelector(state=>state.cart)
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
 
   const handleRemove = (productId) => {
     return dispatch(cartActions.deleteItemFromCart(productId));
   };
 
   const handleProceedCheckout = () => {
-    dispatch(cartActions.toggleCartPopup());
+    // dispatch(cartActions.toggleCartPopup());
     navigate("/checkout");
+    // setOpen(false);
   };
 
-  return (
-    <div>
+  const cartContent =()=> (
+      <div>
       {cartItems.length > 0 ?  
         cartItems.map(item=>{
           return(
             <div>
            <Space size={12}>
             <Image
-              width={200}
-              src={`data:image;base64,${item.imagePath}`}
+              width={100}
+              src={item.image}
               placeholder={
                 <Image
                   preview={false}
-                  src={`data:image;base64,${item.imagePath}`}
-                  width={200}
+                  src={item.imagePath}
+                  width={100}
                 />
             }
           />
+          <div className="cart">
+          <div className="cart-info">
+            <table>
+              <tbody>
+                <tr>
+                  <td>No. of items</td>
+                  <td>:</td>
+                  <td>
+                    <strong>{item.quantity}</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sub Total</td>
+                  <td>:</td>
+                  <td>
+                    <strong>{totalPrice}</strong>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          </div>
           <Button
             // type="primary"
             onClick={()=>handleRemove(item.id)}
@@ -43,13 +72,6 @@ const Cart = () => {
             X
           </Button>
         </Space>
-
-           <Button
-            //  type="primary"
-            onClick={handleProceedCheckout}
-          >
-            Checkout
-          </Button> 
           </div>
         )
         })
@@ -65,8 +87,25 @@ const Cart = () => {
         >
         </Empty>
         }
+        { cartItems.length > 0 &&
+            <Button
+            //  type="primary"
+            onClick={handleProceedCheckout}
+          >
+            Checkout
+          </Button> 
+        }
+        </div>
+)
+
+  return (
+    <div>
+          <Popover content={cartContent} title="Title" trigger="click" placement="bottom">
+            <Button shape="square" size="large" icon={<ShoppingOutlined />}/>
+          </Popover>
     </div>
   );
-};
+})
+
 
 export default Cart;

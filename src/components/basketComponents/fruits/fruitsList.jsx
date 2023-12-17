@@ -62,7 +62,7 @@ function FruitsList(props) {
         >
           <Meta
             title={value.name}
-            description={value.price}
+            description={`₹${value.price}`}
           />
           </Card>)
       })} 

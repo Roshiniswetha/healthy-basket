@@ -7,8 +7,8 @@ import { Breadcrumbs } from '.';
 import { vegetablesData } from 'assets/data/Vegetables';
 import { categorySliceActions } from 'components/store/productSlices/categorySlice';
 import { fruitsActions } from 'components/store/productSlices/fruitsSlice';
+import { vegetablesActions } from 'components/store/productSlices/vegetablesSlice';
 
-// const { Sider } = Layout;
 const { TreeNode } = Tree;
 
 const { Content, Sider } = Layout;
@@ -16,23 +16,42 @@ const { Content, Sider } = Layout;
 export default function Drawer() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { allFruits } = useSelector((state) => state.fruits);
-  const { categories } = useSelector((state) => state.category);
 
-  console.log('categories', categories)
+  const { fruitCategories, vegetableCategories } = useSelector((state) => state.category);
 
   const [collapsed, setCollapsed] = useState(false);
   const [selectedKeys, setSelectedKeys] = useState([]);
-  // const { fruits } = useSelector(state=>state.fruits)
 
-  const [showComponent, setShowComponent] = useState(false);
+  const categoriesData = [
+    { key: '1', title: 'Fruits', children: [...fruitCategories] },
+    { key: '2', title: 'Vegetables', children: [...vegetableCategories] },
+    { key: '3', title: 'Daily Essentials', children: [...vegetableCategories] },
+  ];
+
+  const findParentNode = (key) => {
+    const parentKey = key.split('/')[0];
+
+    const parentNode = categoriesData.find((node) => node.children.includes(parentKey));
+
+    return parentNode.title;
+  };
 
   const handleSelect = (selectedKeys,info) => {
-    const category = info.node.title==='fruits' ? 'All' : info.node.title
-    setSelectedKeys(selectedKeys);
+    let category = 'All'
+    setSelectedKeys(selectedKeys[0]);
+    const selectedKey = selectedKeys[0]
+    if(selectedKey==='Fruits' || findParentNode(selectedKey)==='Fruits'){
+        navigate('/categories/fruits')
+        category = info.node.title==='Fruits' ? 'All' : info.node.title
+        dispatch(categorySliceActions.setFruitCategory(category))
+        dispatch(fruitsActions.getFilteredFruitsByCategory(category))
+    } else if(selectedKey==='Vegetables' || findParentNode(selectedKey)==='Vegetables'){
+        navigate('/categories/vegetables')
+        category = info.node.title==='Vegetables' ? 'All' : info.node.title
+        dispatch(categorySliceActions.setVegetableCategory(category))
+        dispatch(vegetablesActions.getFilteredVegetablesByCategory(category))
+    }
 
-    dispatch(categorySliceActions.setCategory(category))
-    dispatch(fruitsActions.getFilteredFruitsByCategory(category))
   };
 
   return (
@@ -41,38 +60,17 @@ export default function Drawer() {
         <div className="demo-logo-vertical" />
         <Tree
         showLine
-        // defaultExpandedKeys={['0-0', '0-1']}
+        defaultExpandedKeys={['0-0', '0-1']}
         onSelect={handleSelect}
         selectedKeys={selectedKeys}
         >
-          <TreeNode
-            key="fruits"
-            title="fruits"
-            // icon={node.icon}
-          >
-            {[...allFruits].map((key,value)=>{
-                return(
-              <TreeNode
-                key={value}
-                title={key.category}
-              />
-                )})}
-              </TreeNode>
-          <Divider plain>Text</Divider>
-          <TreeNode
-            key="vegetables"
-            title="vegetables"
-            // icon={node.icon}
-          >
-            {/* {[...VegetablesByCategory].map((key,value)=>{
-                return(
-              <TreeNode
-                key={value}
-                title={key}
-                // icon={node.icon}
-              />
-                )})} */}
-              </TreeNode>
+            {categoriesData.map((node) => (
+              <TreeNode key={node.key} title={node.title}>
+                {node.children && node.children.map((child) => (
+                  <TreeNode key={child} title={child} />
+                ))}
+                </TreeNode>
+              ))}
           <Divider plain>Text</Divider>
         </Tree>
       </Sider>

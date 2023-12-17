@@ -1,27 +1,48 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fruitsData } from "assets/data/Fruits";
+import { vegetablesData } from 'assets/data/Vegetables';
 
 const categorySlice = createSlice({
   name: 'category',
   initialState: {
-    categories: [],
-    category: 'All',
-    sortBy: 'Default' 
+    fruitCategories: [],
+    fruitCategory: 'All',
+    vegetableCategory: 'All',
+    sortBy: 'Default',
+    vegetableCategories: []
   },
   reducers: {
-    setCategory (state, action) {
+    setFruitCategory (state, action) {
       const category = action.payload
-      state.category = category;
+      state.fruitCategory = category;
     },
-    setCategoriesList(state){
-      state.categories = filterValuesByCategory(fruitsData)
+    setVegetableCategory (state, action) {
+      const category = action.payload
+      state.vegetableCategory = category;
+    },
+    setFruitsCategoriesList(state, action){
+      state.fruitCategories = action.payload
+    },
+    setVegetablesCategoriesList(state, action){
+      state.vegetableCategories = action.payload
     }
   },
 });
 
-export const filterValuesByCategory = (fruits) => {
+export const filterFruitsValuesByCategory = (fruits) => {
+  return function(dispatch) {
   const categories = new Set()
-  return categories.add(fruitsData.filter(fruit=>fruit.category))
+  fruitsData.map(fruit=>categories.add(fruit.category))
+  dispatch(categorySliceActions.setFruitsCategoriesList(categories))
+  }
+};
+
+export const filterVegetablesValuesByCategory = (fruits) => {
+  return function(dispatch) {
+  const categories = new Set()
+  vegetablesData.map(vegetable=>categories.add(vegetable.category))
+  dispatch(categorySliceActions.setVegetablesCategoriesList(categories))
+  }
 };
 
 export const categorySliceActions = categorySlice.actions;

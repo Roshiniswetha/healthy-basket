@@ -17,25 +17,6 @@ export default function HeaderComponent() {
   const dispatch = useDispatch();
 
   const {cartItems} = useSelector(state=>state.cart)
-  const [open, setOpen] = useState(false);
-  var count = 0
-
-  // useEffect(() => {
-
-  // }, [dispatch]);
-
-  const hide = () => {
-    setOpen(false);
-  };
-
-  const handleOpenChange = () => {
-    setOpen(true);
-  };
-
-  const handleCartClick = () =>{
-    setOpen(!open)
-  }
-
   const handleLoginClick = () =>{
     navigate(`/login`)
   }
@@ -61,15 +42,7 @@ export default function HeaderComponent() {
     />
         <Badge count={cartItems ? cartItems.length: 0}>
         <div>
-          <Popover
-          content={<Cart />}
-          title="Title"
-          trigger="click"
-          open={open}
-          // onOpenChange={handleOpenChange}
-          >
-            <Button shape="square" size="large" icon={<ShoppingOutlined />} onClick={handleCartClick}/>
-          </Popover>
+        <Cart cartItems={cartItems}/>
         </div>
         </Badge>
           <Avatar shape="round" style={{ backgroundColor: '#BED754' }} icon={<UserOutlined />} onClick={handleLoginClick}/>
